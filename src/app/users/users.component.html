@@ -1,0 +1,40 @@
+<section class="content-header">
+    <h1>
+      Clients
+      <button type="button" (click)="toggleSearch()" class="btn btn-primary btn-lg margin pull-right">Name<i class="fa fa-search"></i></button>
+    </h1>
+  
+    <div class="row">
+      <div class="col-xs-12" *ngIf="searchUser" >
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <input type="text" formControlName="searchControl"
+                class="form-control" placeholder="Are you looking for books by author name part?">
+          <button type="submit"  class="btn"><i class="fa fa-search"></i></button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content">
+  
+    <div class="row">
+      <div *ngFor="let user of users" class="col-sm-6 col-xs-12">
+          <st-user [user]="user"></st-user>
+      </div>
+      <div *ngIf="users?.length === 0 && message?.length === 0" class="col-xs-12">
+        <p class="lead text-center">
+            No items were found matching your search. Pleade improve your search.
+        </p>
+      </div>
+      <div *ngIf="message?.length > 0" class="col-xs-12">
+          <p class="lead text-center">
+              Please write something to search
+          </p>
+        </div>
+    </div>
+  
+  </section>
+  
+  

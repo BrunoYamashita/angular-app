@@ -1,0 +1,18 @@
+  <div class="place-info-box">
+      <span class="menu-item-info-box-icon">
+          <img *ngIf="user.gender == 'male'" src="../../../assets/male.png">
+          <img *ngIf="user.gender == 'female'" src="../../../assets/female.png">
+        </span>
+    <div class="place-info-box-content">
+      <div class="flex">
+        <span class="place-info-box-text">{{user.fullName}}</span>
+        <span class="place-info-box-detail right">{{user.gender | titlecase}}</span>
+      </div>
+      <div class="flex">
+      <span class="place-info-box-detail">Username: {{user.username}}</span>
+      <span class="place-info-box-detail right">Age: {{user.age}}</span>
+    </div>
+      <span class="place-info-box-detail">Email: {{user.email}}</span>
+      <span class="place-info-box-detail">Phone: {{user.phone}}</span>
+    </div>
+  </div>

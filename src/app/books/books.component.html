@@ -1,0 +1,51 @@
+<section class="content-header">
+  <h1>
+    Books
+  <button type="button" (click)="toggleSearchAuthor()" class="btn btn-primary margin btn-lg pull-right">Author<i class="fa fa-search"></i></button>
+  <button type="button" (click)="toggleSearchBook()" class="btn btn-primary first margin btn-lg pull-right">Title<i class="fa fa-search"></i></button>
+  </h1>
+
+  <div class="row">
+    <div class="col-xs-12" *ngIf="searchBarAuthor" >
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit('author')">
+        <div class="form-group">
+            <input type="text" formControlName="searchControl"
+              class="form-control" placeholder="Are you looking for books by author name part?">
+        <button type="submit"  class="btn"><i class="fa fa-search"></i></button>
+      </div>
+      </form>
+    </div>
+
+    <div class="col-xs-12" *ngIf="searchBarTitle" >
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit('book')">
+          <div class="form-group">
+              <input type="text" formControlName="searchControl"
+                class="form-control" placeholder="Are you looking for books by title part?">
+          <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+        </div>
+        </form>
+      </div>
+  </div>
+
+</section>
+
+<section class="content">
+
+  <div class="row">
+    <div *ngFor="let book of books" class="col-sm-6 col-xs-12">
+        <st-book [book]="book"></st-book>
+    </div>
+    <div *ngIf="books?.length === 0 && message?.length === 0" class="col-xs-12">
+      <p class="lead text-center">
+          No items were found matching your search. Pleade improve your search.
+      </p>
+    </div>
+    <div *ngIf="message?.length > 0" class="col-xs-12">
+        <p class="lead text-center">
+            Please write something to search
+        </p>
+      </div>
+  </div>
+
+</section>
+
