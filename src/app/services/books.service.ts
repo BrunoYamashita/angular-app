@@ -8,10 +8,6 @@ import { Book } from '../models/book';
 import { ErrorHandler } from './error-handler';
 import { environment } from "../../environments/environment";
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({ providedIn: 'root' })
 export class BooksService {
 
@@ -22,9 +18,8 @@ export class BooksService {
 
   /** GET books from the server */
   getBooks (): Observable<Book[]> {
-    return this.http.get<Book[]>(this.booksUrl,httpOptions)
+    return this.http.get<Book[]>(this.booksUrl)
     .pipe(
-      tap(book=>console.log(book)),
       catchError(ErrorHandler.handleError)
     );
   }
@@ -33,7 +28,6 @@ export class BooksService {
     const url = `${this.booksUrl}/by-title/${title}`;
     return this.http.get<Book[]>(url)    
     .pipe(
-      tap(book=>console.log(book)),
       catchError(ErrorHandler.handleError)
     );
   }
